@@ -5,11 +5,13 @@ import Toybox.WatchUi;
 
 class MiniChronoTime extends WatchUi.Drawable {
 
-    private const GAP_X = 5;
+    private const VALUES_GAP = 5;
 
     private var font;
     private var hourColor;
     private var minutesColor;
+
+    private var useVerticalLayout;
 
     function initialize() {
         Drawable.initialize({ :identifier => "MiniChronoTime" });
@@ -25,6 +27,8 @@ class MiniChronoTime extends WatchUi.Drawable {
         var greenMinutesColor = Application.Properties.getValue("GreenMinutesColor");
         var blueMinutesColor = Application.Properties.getValue("BlueMinutesColor");
         minutesColor = convertRgbToHex(redMinutesColor, greenMinutesColor, blueMinutesColor);
+
+        useVerticalLayout = Application.Properties.getValue("UseVerticalLayout");
     }
 
     function convertRgbToHex(r, g, b) {
@@ -40,25 +44,29 @@ class MiniChronoTime extends WatchUi.Drawable {
         var centerY = dc.getHeight() / 2;
 
         var fontHeight = dc.getFontHeight(font);
+
+        if (useVerticalLayout) {
+            drawVerticalLayout(dc, hour, minutes, centerX, centerY, fontHeight);
+        } else {
+            drawHorizontalLayout(dc, hour, minutes, centerX, centerY, fontHeight);
+        }
+    }
+
+    function drawVerticalLayout(dc, hour, minutes, centerX, centerY, fontHeight) {
+        drawValue(dc, hourColor, centerX, centerY - VALUES_GAP - fontHeight, hour, Graphics.TEXT_JUSTIFY_CENTER);
+        drawValue(dc, minutesColor, centerX, centerY + VALUES_GAP, minutes, Graphics.TEXT_JUSTIFY_CENTER);
+    }
+
+    function drawHorizontalLayout(dc, hour, minutes, centerX, centerY, fontHeight) {
         var y = centerY - fontHeight / 2;
 
-		dc.setColor(hourColor, Graphics.COLOR_TRANSPARENT);
-		dc.drawText(
-            centerX - GAP_X, 
-            y,
-			font,
-			hour,
-            Graphics.TEXT_JUSTIFY_RIGHT
-		);
+        drawValue(dc, hourColor, centerX - VALUES_GAP, y, hour, Graphics.TEXT_JUSTIFY_RIGHT);
+        drawValue(dc, minutesColor, centerX + VALUES_GAP, y, minutes, Graphics.TEXT_JUSTIFY_LEFT);
+    }
 
-		dc.setColor(minutesColor, Graphics.COLOR_TRANSPARENT);
-		dc.drawText(
-            centerX + GAP_X, 
-            y,
-			font,
-			minutes,
-			Graphics.TEXT_JUSTIFY_LEFT
-		);
+    function drawValue(dc, color, x, y, hour, textJustify) {
+        dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(x, y, font, hour, textJustify);
     }
     
     function getCurrentTime() {

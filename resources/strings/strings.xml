@@ -2,15 +2,14 @@
 
     <string id="AppName">Mini Chrono</string>
 
-    <string id="HourColorTitle">Hour Color</string>
-    <string id="MinutesColorTitle">Minutes Color</string>
-    <string id="UseVerticalLayoutTitle">Use Vertical Layout?</string>
+    <string id="RedHourColorTitle">Hour Color - Red</string>
+    <string id="GreenHourColorTitle">Hour Color - Green</string>
+    <string id="BlueHourColorTitle">Hour Color - Blue</string>
 
-    <string id="ColorBlack">Black</string>
-    <string id="ColorDarkGray">Dark Gray</string>
-    <string id="ColorLightGray">Light Gray</string>
-    <string id="ColorWhite">White</string>
-    <string id="ColorBlue">Blue</string>
-    <string id="ColorRed">Red</string>
+    <string id="RedMinutesColorTitle">Minutes Color - Red</string>
+    <string id="GreenMinutesColorTitle">Minutes Color - Green</string>
+    <string id="BlueMinutesColorTitle">Minutes Color - Blue</string>
+
+    <string id="UseVerticalLayoutTitle">Use Vertical Layout?</string>
 
 </strings>

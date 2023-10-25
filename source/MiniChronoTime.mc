@@ -16,8 +16,19 @@ class MiniChronoTime extends WatchUi.Drawable {
 
         font = WatchUi.loadResource(Rez.Fonts.TiltNeon);
 
-        hourColor = Application.Properties.getValue("HourColor");
-        minutesColor = Application.Properties.getValue("MinutesColor");
+        var redHourColor = Application.Properties.getValue("RedHourColor");
+        var greenHourColor = Application.Properties.getValue("GreenHourColor");
+        var blueHourColor = Application.Properties.getValue("BlueHourColor");
+        hourColor = convertRgbToHex(redHourColor, greenHourColor, blueHourColor);
+
+        var redMinutesColor = Application.Properties.getValue("RedMinutesColor");
+        var greenMinutesColor = Application.Properties.getValue("GreenMinutesColor");
+        var blueMinutesColor = Application.Properties.getValue("BlueMinutesColor");
+        minutesColor = convertRgbToHex(redMinutesColor, greenMinutesColor, blueMinutesColor);
+    }
+
+    function convertRgbToHex(r, g, b) {
+        return r & 0x0000FF << 16 | g & 0x0000FF << 8 | b & 0x0000FF;
     }
 
     function draw(dc) {

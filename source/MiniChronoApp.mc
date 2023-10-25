@@ -27,7 +27,3 @@ class MiniChrono extends Application.AppBase {
     }
 
 }
-
-function getApp() as MiniChrono {
-    return Application.getApp() as MiniChrono;
-}

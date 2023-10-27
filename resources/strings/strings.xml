@@ -2,7 +2,7 @@
 
     <string id="AppName">Mini Chrono</string>
 
-    <string id="SelectPresetColorTitle">Select a preset color or set your own RGB colors for hours and minutes</string>
+    <string id="SelectPresetColorTitle">Select a preset color</string>
     <string id="PresetColorBlue">Blue</string>
     <string id="PresetColorGreen">Green</string>
     <string id="PresetColorGrey">Grey</string>
@@ -11,10 +11,10 @@
     <string id="PresetColorRed">Red</string>
     <string id="PresetColorYellow">Yellow</string>
 
-    <string id="UseCustomColorsTitle">Use Custom RGB Colors?</string>
+    <string id="UseCustomColorsTitle">Enable to use custom RGB colors defined below</string>
 
-    <string id="HourColorGroupTitle">Hour Color - RGB</string>
-    <string id="MinutesColorGroupTitle">Minutes Color - RGB</string>
+    <string id="HourColorGroupTitle">Hour Color</string>
+    <string id="MinutesColorGroupTitle">Minutes Color</string>
     <string id="HourColorGroupDescription">Set hour color in RGB format</string>
     <string id="MinutesColorGroupTDescription">Set minutes color in RGB format</string>
 
@@ -26,7 +26,7 @@
     <string id="GreenMinutesColorTitle">Minutes Color - Green</string>
     <string id="BlueMinutesColorTitle">Minutes Color - Blue</string>
 
-    <string id="UseVerticalLayoutTitle">Use Vertical Layout?</string>
+    <string id="UseVerticalLayoutTitle">Enable to use vertical layout</string>
 
     <string id="SelectFontTitle">Select font</string>
     <string id="FontComfortaa">Comfortaa</string>

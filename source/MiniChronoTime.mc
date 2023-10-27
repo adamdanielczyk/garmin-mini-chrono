@@ -15,7 +15,14 @@ class MiniChronoTime extends WatchUi.Drawable {
 
     function initialize() {
         Drawable.initialize({ :identifier => "MiniChronoTime" });
+        loadConfiguration();
+    }
+
+    function onSettingsChanged() {
+        loadConfiguration();
+    }
         
+    function loadConfiguration() {
         loadFont();
         loadColors();
 

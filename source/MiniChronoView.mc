@@ -41,4 +41,8 @@ class MiniChronoView extends WatchUi.WatchFace {
     function onEnterSleep() as Void {
     }
 
+    function onSettingsChanged() {
+        (View.findDrawableById("MiniChronoTime") as MiniChronoTime).onSettingsChanged();
+    }
+
 }

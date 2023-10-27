@@ -1,3 +1,12 @@
 <fonts>
+    <font id="Comfortaa" filename="comfortaa-light.fnt" antialias="true" />
+    <font id="Exo" filename="exo-regular.fnt" antialias="true" />
+    <font id="LexendTera" filename="lexendtera-regular.fnt" antialias="true" />
+    <font id="Monofett" filename="monofett-regular.fnt" antialias="true" />
+    <font id="Montserrat" filename="montserrat-regular.fnt" antialias="true" />
+    <font id="OpenSans" filename="opensans-regular.fnt" antialias="true" />
+    <font id="Poppins" filename="poppins-regular.fnt" antialias="true" />
+    <font id="Roboto" filename="roboto-regular.fnt" antialias="true" />
     <font id="TiltNeon" filename="tiltneon-regular.fnt" antialias="true" />
+    <font id="Tourney" filename="tourney-light.fnt" antialias="true" />
 </fonts>

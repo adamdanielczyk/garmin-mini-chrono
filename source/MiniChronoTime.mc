@@ -16,7 +16,8 @@ class MiniChronoTime extends WatchUi.Drawable {
     function initialize() {
         Drawable.initialize({ :identifier => "MiniChronoTime" });
 
-        font = WatchUi.loadResource(Rez.Fonts.TiltNeon);
+        var selectedFont = Application.Properties.getValue("SelectedFont");
+        font = getFontResource(selectedFont);
 
         var redHourColor = Application.Properties.getValue("RedHourColor");
         var greenHourColor = Application.Properties.getValue("GreenHourColor");
@@ -29,6 +30,32 @@ class MiniChronoTime extends WatchUi.Drawable {
         minutesColor = convertRgbToHex(redMinutesColor, greenMinutesColor, blueMinutesColor);
 
         useVerticalLayout = Application.Properties.getValue("UseVerticalLayout");
+    }
+
+    function getFontResource(selectedFont) {
+        switch (selectedFont) {
+            default:
+            case Comfortaa:
+                return WatchUi.loadResource(Rez.Fonts.Comfortaa);
+            case Exo:
+                return WatchUi.loadResource(Rez.Fonts.Exo);
+            case LexendTera:
+                return WatchUi.loadResource(Rez.Fonts.LexendTera);
+            case Monofett:
+                return WatchUi.loadResource(Rez.Fonts.Monofett);
+            case Montserrat:
+                return WatchUi.loadResource(Rez.Fonts.Montserrat);
+            case OpenSans:
+                return WatchUi.loadResource(Rez.Fonts.OpenSans);
+            case Poppins:
+                return WatchUi.loadResource(Rez.Fonts.Poppins);
+            case Roboto:
+                return WatchUi.loadResource(Rez.Fonts.Roboto);
+            case TiltNeon:
+                return WatchUi.loadResource(Rez.Fonts.TiltNeon);
+            case Tourney:
+                return WatchUi.loadResource(Rez.Fonts.Tourney);
+        }
     }
 
     function convertRgbToHex(r, g, b) {
@@ -85,6 +112,19 @@ class MiniChronoTime extends WatchUi.Drawable {
             :hour => hour.format("%02d"),
             :minutes => minutes.format("%02d")
         };
+    }
+
+    enum {
+        Comfortaa,
+        Exo,
+        LexendTera,
+        Monofett,
+        Montserrat,
+        OpenSans,
+        Poppins,
+        Roboto,
+        TiltNeon,
+        Tourney
     }
 
 }

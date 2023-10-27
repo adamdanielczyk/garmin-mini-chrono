@@ -27,5 +27,20 @@
     <setting propertyKey="@Properties.UseVerticalLayout" title="@Strings.UseVerticalLayoutTitle">
         <settingConfig type="boolean" />
     </setting>
+    
+    <setting propertyKey="@Properties.SelectedFont" title="@Strings.SelectFontTitle">
+    	<settingConfig type="list">
+            <listEntry value="0">@Strings.FontComfortaa</listEntry>
+            <listEntry value="1">@Strings.FontExo</listEntry>
+            <listEntry value="2">@Strings.FontLexendTera</listEntry>
+            <listEntry value="3">@Strings.FontMonofett</listEntry>
+            <listEntry value="4">@Strings.FontMontserrat</listEntry>
+            <listEntry value="5">@Strings.FontOpenSans</listEntry>
+            <listEntry value="6">@Strings.FontPoppins</listEntry>
+            <listEntry value="7">@Strings.FontRoboto</listEntry>
+            <listEntry value="8">@Strings.FontTiltNeon</listEntry>
+            <listEntry value="9">@Strings.FontTourney</listEntry>
+    	</settingConfig>
+    </setting>
 
 </settings>

@@ -12,4 +12,16 @@
 
     <string id="UseVerticalLayoutTitle">Use Vertical Layout?</string>
 
+    <string id="SelectFontTitle">Select font</string>
+    <string id="FontComfortaa">Comfortaa</string>
+    <string id="FontExo">Exo</string>
+    <string id="FontLexendTera">Lexend Tera</string>
+    <string id="FontMonofett">Monofett</string>
+    <string id="FontMontserrat">Montserrat</string>
+    <string id="FontOpenSans">Open Sans</string>
+    <string id="FontPoppins">Poppins</string>
+    <string id="FontRoboto">Roboto</string>
+    <string id="FontTiltNeon">Tilt Neon</string>
+    <string id="FontTourney">Tourney</string>
+
 </strings>

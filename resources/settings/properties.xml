@@ -10,4 +10,6 @@
 
     <property id="UseVerticalLayout" type="boolean">false</property>
 
+    <property id="SelectedFont" type="number">8</property>
+
 </properties>

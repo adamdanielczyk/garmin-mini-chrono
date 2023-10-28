@@ -1,8 +1,12 @@
 <settings>
 
+    <setting propertyKey="@Properties.HideHourLeadingZero" title="@Strings.HideHourLeadingZeroTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
     <setting propertyKey="@Properties.UseVerticalLayout" title="@Strings.UseVerticalLayoutTitle">
         <settingConfig type="boolean" />
-    </setting>    
+    </setting>
     
     <setting propertyKey="@Properties.SelectedFont" title="@Strings.SelectFontTitle">
     	<settingConfig type="list" required="false">

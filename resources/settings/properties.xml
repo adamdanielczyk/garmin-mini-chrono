@@ -1,5 +1,8 @@
 <properties>
 
+    <property id="HideHourLeadingZero" type="boolean">false</property>
+    <property id="UseVerticalLayout" type="boolean">false</property>
+
     <property id="PresetColor" type="number">3</property>
 
     <property id="UseCustomColors" type="boolean">false</property>
@@ -11,8 +14,6 @@
     <property id="RedMinutesColor" type="number">255</property>
     <property id="GreenMinutesColor" type="number">245</property>
     <property id="BlueMinutesColor" type="number">230</property>
-
-    <property id="UseVerticalLayout" type="boolean">false</property>
 
     <property id="SelectedFont" type="number">8</property>
 

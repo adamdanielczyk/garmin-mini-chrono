@@ -12,6 +12,7 @@ class MiniChronoTime extends WatchUi.Drawable {
     private var minutesColor;
 
     private var useVerticalLayout;
+    private var hideHourLeadingZero;
 
     function initialize() {
         Drawable.initialize({ :identifier => "MiniChronoTime" });
@@ -27,6 +28,7 @@ class MiniChronoTime extends WatchUi.Drawable {
         loadColors();
 
         useVerticalLayout = Application.Properties.getValue("UseVerticalLayout");
+        hideHourLeadingZero = Application.Properties.getValue("HideHourLeadingZero");
     }
 
     function loadFont() {
@@ -177,7 +179,7 @@ class MiniChronoTime extends WatchUi.Drawable {
     }
 
     function drawVerticalLayout(dc, hour, minutes, centerX, centerY, fontHeight) {
-        drawValue(dc, hourColor, centerX, centerY - VALUES_GAP - fontHeight, hour, Graphics.TEXT_JUSTIFY_CENTER);
+        drawValue(dc, hourColor, centerX, centerY - VALUES_GAP - fontHeight, hour, hideHourLeadingZero ? Graphics.TEXT_JUSTIFY_LEFT : Graphics.TEXT_JUSTIFY_CENTER);
         drawValue(dc, minutesColor, centerX, centerY + VALUES_GAP, minutes, Graphics.TEXT_JUSTIFY_CENTER);
     }
 
@@ -206,7 +208,7 @@ class MiniChronoTime extends WatchUi.Drawable {
         }
 
         return {
-            :hour => hour.format("%02d"),
+            :hour => hour.format(hideHourLeadingZero ? "%d" : "%02d"),
             :minutes => minutes.format("%02d")
         };
     }

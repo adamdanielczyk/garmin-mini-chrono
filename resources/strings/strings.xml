@@ -2,6 +2,9 @@
 
     <string id="AppName">Mini Chrono</string>
 
+    <string id="HideHourLeadingZeroTitle">Enable to hide hour leading zero</string>
+    <string id="UseVerticalLayoutTitle">Enable to use vertical layout</string>
+
     <string id="SelectPresetColorTitle">Select a preset color</string>
     <string id="PresetColorBlue">Blue</string>
     <string id="PresetColorGreen">Green</string>
@@ -25,8 +28,6 @@
     <string id="RedMinutesColorTitle">Minutes Color - Red</string>
     <string id="GreenMinutesColorTitle">Minutes Color - Green</string>
     <string id="BlueMinutesColorTitle">Minutes Color - Blue</string>
-
-    <string id="UseVerticalLayoutTitle">Enable to use vertical layout</string>
 
     <string id="SelectFontTitle">Select font</string>
     <string id="FontComfortaa">Comfortaa</string>

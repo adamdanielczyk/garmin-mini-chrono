@@ -16,11 +16,6 @@
 
     <string id="UseCustomColorsTitle">Enable to use custom RGB colors defined below</string>
 
-    <string id="HourColorGroupTitle">Hour Color</string>
-    <string id="MinutesColorGroupTitle">Minutes Color</string>
-    <string id="HourColorGroupDescription">Set hour color in RGB format</string>
-    <string id="MinutesColorGroupTDescription">Set minutes color in RGB format</string>
-
     <string id="RedHourColorTitle">Hour Color - Red</string>
     <string id="GreenHourColorTitle">Hour Color - Green</string>
     <string id="BlueHourColorTitle">Hour Color - Blue</string>

@@ -33,132 +33,64 @@ class MiniChronoTime extends WatchUi.Drawable {
 
     function loadFont() {
         var selectedFont = Application.Properties.getValue("SelectedFont");
-        var fontRes;
-
-        switch (selectedFont) {
-            default:
-            case Comfortaa:
-                fontRes = Rez.Fonts.Comfortaa;
-                break;
-            case Exo:
-                fontRes = Rez.Fonts.Exo;
-                break;
-            case LexendTera:
-                fontRes = Rez.Fonts.LexendTera;
-                break;
-            case Monofett:
-                fontRes = Rez.Fonts.Monofett;
-                break;
-            case Montserrat:
-                fontRes = Rez.Fonts.Montserrat;
-                break;
-            case OpenSans:
-                fontRes = Rez.Fonts.OpenSans;
-                break;
-            case Poppins:
-                fontRes = Rez.Fonts.Poppins;
-                break;
-            case Roboto:
-                fontRes = Rez.Fonts.Roboto;
-                break;
-            case TiltNeon:
-                fontRes = Rez.Fonts.TiltNeon;
-                break;
-            case Tourney:
-                fontRes = Rez.Fonts.Tourney;
-                break;
-        }
-
-        font = WatchUi.loadResource(fontRes);
+        font = WatchUi.loadResource(fonts[selectedFont]);
     }
 
     function loadColors() {
-        var presetColor = Application.Properties.getValue("PresetColor");
+        var hourRgb;
+        var minutesRgb;
+
         var useCustomColors = Application.Properties.getValue("UseCustomColors");
 
-        var redHourColor;
-        var greenHourColor;
-        var blueHourColor;
-        var redMinutesColor;
-        var greenMinutesColor;
-        var blueMinutesColor;
-
         if (useCustomColors) {
-            redHourColor = Application.Properties.getValue("RedHourColor");
-            greenHourColor = Application.Properties.getValue("GreenHourColor");
-            blueHourColor = Application.Properties.getValue("BlueHourColor");
-            
-            redMinutesColor = Application.Properties.getValue("RedMinutesColor");
-            greenMinutesColor = Application.Properties.getValue("GreenMinutesColor");
-            blueMinutesColor = Application.Properties.getValue("BlueMinutesColor");
+            hourRgb = new Rgb(
+                Application.Properties.getValue("RedHourColor"),
+                Application.Properties.getValue("GreenHourColor"),
+                Application.Properties.getValue("BlueHourColor") 
+            );
+
+            minutesRgb = new Rgb(
+                Application.Properties.getValue("RedMinutesColor"),
+                Application.Properties.getValue("GreenMinutesColor"),
+                Application.Properties.getValue("BlueMinutesColor") 
+            );
         } else {
+            var presetColor = Application.Properties.getValue("PresetColor");
             switch (presetColor) {
                 default:
                 case Blue:
-                    redHourColor = 102;
-                    greenHourColor = 204;
-                    blueHourColor = 255;
-                    redMinutesColor = 230;
-                    greenMinutesColor = 247;
-                    blueMinutesColor = 255;
+                    hourRgb = new Rgb(102, 204, 255);
+                    minutesRgb = new Rgb(230, 247, 255);
                     break;
                 case Green:
-                    redHourColor = 51;
-                    greenHourColor = 204;
-                    blueHourColor = 51;
-                    redMinutesColor = 235;
-                    greenMinutesColor = 250;
-                    blueMinutesColor = 235;
+                    hourRgb = new Rgb(51, 204, 51);
+                    minutesRgb = new Rgb(235, 250, 235);
                     break;
                 case Grey:
-                    redHourColor = 128;
-                    greenHourColor = 128;
-                    blueHourColor = 128;
-                    redMinutesColor = 230;
-                    greenMinutesColor = 230;
-                    blueMinutesColor = 230;
+                    hourRgb = new Rgb(128, 128, 128);
+                    minutesRgb = new Rgb(230, 230, 230);
                     break;
                 case Orange:
-                    redHourColor = 255;
-                    greenHourColor = 153;
-                    blueHourColor = 0;
-                    redMinutesColor = 255;
-                    greenMinutesColor = 245;
-                    blueMinutesColor = 230;
+                    hourRgb = new Rgb(255, 153, 0);
+                    minutesRgb = new Rgb(255, 245, 230);
                     break;
                 case Pink:
-                    redHourColor = 255;
-                    greenHourColor = 51;
-                    blueHourColor = 204;
-                    redMinutesColor = 255;
-                    greenMinutesColor = 230;
-                    blueMinutesColor = 249;
+                    hourRgb = new Rgb(255, 51, 204);
+                    minutesRgb = new Rgb(255, 230, 249);
                     break;
                 case Red:
-                    redHourColor = 255;
-                    greenHourColor = 0;
-                    blueHourColor = 0;
-                    redMinutesColor = 255;
-                    greenMinutesColor = 230;
-                    blueMinutesColor = 230;
+                    hourRgb = new Rgb(255, 0, 0);
+                    minutesRgb = new Rgb(255, 230, 230);
                     break;
                 case Yellow:
-                    redHourColor = 255;
-                    greenHourColor = 255;
-                    blueHourColor = 0;
-                    redMinutesColor = 255;
-                    greenMinutesColor = 255;
-                    blueMinutesColor = 230;
+                    hourRgb = new Rgb(255, 255, 0);
+                    minutesRgb = new Rgb(255, 255, 230);
                     break;
             }
         }
 
-        hourColor = convertRgbToHex(redHourColor, greenHourColor, blueHourColor);
-        minutesColor = convertRgbToHex(redMinutesColor, greenMinutesColor, blueMinutesColor);
-    }
-
-    function convertRgbToHex(r, g, b) {
-        return r & 0x0000FF << 16 | g & 0x0000FF << 8 | b & 0x0000FF;
+        hourColor = hourRgb.getHex();
+        minutesColor = minutesRgb.getHex();
     }
 
     function draw(dc) {
@@ -213,18 +145,18 @@ class MiniChronoTime extends WatchUi.Drawable {
         };
     }
 
-    enum {
-        Comfortaa,
-        Exo,
-        LexendTera,
-        Monofett,
-        Montserrat,
-        OpenSans,
-        Poppins,
-        Roboto,
-        TiltNeon,
-        Tourney
-    }
+    private const fonts = [
+        Rez.Fonts.Comfortaa,
+        Rez.Fonts.Exo,
+        Rez.Fonts.LexendTera,
+        Rez.Fonts.Monofett,
+        Rez.Fonts.Montserrat,
+        Rez.Fonts.OpenSans,
+        Rez.Fonts.Poppins,
+        Rez.Fonts.Roboto,
+        Rez.Fonts.TiltNeon,
+        Rez.Fonts.Tourney
+    ];
 
     enum {
         Blue,
@@ -234,6 +166,22 @@ class MiniChronoTime extends WatchUi.Drawable {
         Pink,
         Red,
         Yellow
+    }
+
+    class Rgb {
+        private var r;
+        private var g;
+        private var b;
+
+        function initialize(r, g, b) {
+            me.r = r;
+            me.g = g;
+            me.b = b;
+        }
+
+        function getHex() {
+            return r & 0x0000FF << 16 | g & 0x0000FF << 8 | b & 0x0000FF;
+        }
     }
 
 }

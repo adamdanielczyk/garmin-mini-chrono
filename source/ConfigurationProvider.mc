@@ -100,14 +100,7 @@ class ConfigurationProvider {
     }
 
     private const fonts = [
-        Rez.Fonts.Comfortaa,
-        Rez.Fonts.Exo,
-        Rez.Fonts.LexendTera,
         Rez.Fonts.Monofett,
-        Rez.Fonts.Montserrat,
-        Rez.Fonts.OpenSans,
-        Rez.Fonts.Poppins,
-        Rez.Fonts.Roboto,
         Rez.Fonts.TiltNeon,
         Rez.Fonts.Tourney
     ];

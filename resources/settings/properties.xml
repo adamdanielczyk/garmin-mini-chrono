@@ -15,6 +15,6 @@
     <property id="GreenMinutesColor" type="number">245</property>
     <property id="BlueMinutesColor" type="number">230</property>
 
-    <property id="SelectedFont" type="number">8</property>
+    <property id="SelectedFont" type="number">1</property>
 
 </properties>

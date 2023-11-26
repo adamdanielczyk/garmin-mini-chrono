@@ -28,7 +28,9 @@ class MiniChronoTime extends WatchUi.Drawable {
         var hour = currentTime[:hour];
         var minutes = currentTime[:minutes];
 
-        var font = getFont(dc, screenWidth, screenHeight, hour, minutes);
+        loadFontIfNeeded(dc, screenWidth, screenHeight, hour, minutes);
+
+        var font = configurationProvider.font;
         var fontHeight = dc.getFontHeight(font);
         var centerOffset = getCenterOffset(fontHeight);
 
@@ -39,16 +41,25 @@ class MiniChronoTime extends WatchUi.Drawable {
         }
     }
 
-    function getFont(dc, screenWidth, screenHeight, hour, minutes) {
-        var font = configurationProvider.font;
-
+    function loadFontIfNeeded(dc, screenWidth, screenHeight, hour, minutes) {
         if (configurationProvider.isFontSizeCalculated()) {
-            return font;
+            return;
         }
 
-        if (configurationProvider.isMinimalFontSize()) {
-            return font;
+        var isFontValid = false;
+        while (!isFontValid) {
+            isFontValid = configurationProvider.isMinimalFontSize() || isCurrentFontValid(dc, screenWidth, screenHeight, hour, minutes);
+
+            if (isFontValid) {
+                configurationProvider.setFontSizeCalculated();
+            } else {
+                configurationProvider.loadSmallerFont();
+            }
         }
+    }
+
+    function isCurrentFontValid(dc, screenWidth, screenHeight, hour, minutes) {
+        var font = configurationProvider.font;
 
         var timeWidth;
         var timeHeight;
@@ -72,13 +83,7 @@ class MiniChronoTime extends WatchUi.Drawable {
         timeWidth += additionalWidthSpace;
         timeHeight += additionalHeightSpace;
 
-        if (screenHeight < timeHeight || screenWidth < timeWidth) {
-            configurationProvider.loadSmallerFont();
-            return getFont(dc, screenWidth, screenHeight, hour, minutes);
-        } else {
-            configurationProvider.setFontSizeCalculated();
-            return font;
-        }
+        return timeWidth < screenWidth && timeHeight < screenHeight;
     }
 
     function getCenterOffset(fontHeight) {

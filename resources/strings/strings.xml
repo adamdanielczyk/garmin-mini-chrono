@@ -25,8 +25,17 @@
     <string id="BlueMinutesColorTitle">Minutes Color - Blue</string>
 
     <string id="SelectFontTitle">Select font</string>
+    <string id="FontCourierPrime">Courier Prime</string>
+    <string id="FontInter">Inter</string>
     <string id="FontMonofett">Monofett</string>
     <string id="FontTiltNeon">Tilt Neon</string>
     <string id="FontTourney">Tourney</string>
+
+    <string id="SelectFontSizeTitle">Select font size</string>
+    <string id="SizeExtraSmall">Extra Small</string>
+    <string id="SizeSmall">Small</string>
+    <string id="SizeMedium">Medium</string>
+    <string id="SizeLarge">Large</string>
+    <string id="SizeExtraLarge">Extra Large</string>
 
 </strings>

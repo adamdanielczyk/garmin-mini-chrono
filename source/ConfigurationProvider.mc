@@ -1,24 +1,25 @@
-import Toybox.Application;
 import Toybox.System;
 import Toybox.WatchUi;
 
 class ConfigurationProvider {
-
     var font;
     var hourColor;
     var minutesColor;
 
     var useVerticalLayout;
-    var hideHourLeadingZero;
+    private var hideHourLeadingZero;
+    private var settings;
 
     function initialize() {
+        settings = new Settings();
+
         loadFont();
         loadColors();
 
-        useVerticalLayout = Application.Properties.getValue("UseVerticalLayout");
-        hideHourLeadingZero = Application.Properties.getValue("HideHourLeadingZero");
+        useVerticalLayout = settings.get("UseVerticalLayout");
+        hideHourLeadingZero = settings.get("HideHourLeadingZero");
     }
-    
+
     function getCurrentTime() {
         var clockTime = System.getClockTime();
         var hour = clockTime.hour;
@@ -33,35 +34,48 @@ class ConfigurationProvider {
 
         return {
             :hour => hour.format(hideHourLeadingZero ? "%d" : "%02d"),
-            :minutes => minutes.format("%02d")
+            :minutes => minutes.format("%02d"),
         };
     }
 
+    function isFontSizeCalculated() {
+        return settings.get(useVerticalLayout ? "IsFontSizeCalculatedForVerticalLayout" : "IsFontSizeCalculatedForHorizontalLayout");
+    }
+
+    function setFontSizeCalculated() {
+        settings.set(useVerticalLayout ? "IsFontSizeCalculatedForVerticalLayout" : "IsFontSizeCalculatedForHorizontalLayout", true);
+    }
+
+    function isMinimalFontSize() {
+        return getFontSize() == SizeExtraSmall;
+    }
+
+    function loadSmallerFont() {
+        settings.set("SelectedFontSize", getFontSize() - 1);
+        loadFont();
+    }
+
     private function loadFont() {
-        var selectedFont = Application.Properties.getValue("SelectedFont");
-        font = WatchUi.loadResource(fonts[selectedFont]);
+        var selectedFont = settings.get("SelectedFont");
+        var fontSize = getFontSize();
+        font = WatchUi.loadResource(fonts[selectedFont][fontSize]);
+    }
+
+    private function getFontSize() {
+        return settings.get("SelectedFontSize");
     }
 
     private function loadColors() {
         var hourRgb;
         var minutesRgb;
 
-        var useCustomColors = Application.Properties.getValue("UseCustomColors");
+        var useCustomColors = settings.get("UseCustomColors");
 
         if (useCustomColors) {
-            hourRgb = new Rgb(
-                Application.Properties.getValue("RedHourColor"),
-                Application.Properties.getValue("GreenHourColor"),
-                Application.Properties.getValue("BlueHourColor") 
-            );
-
-            minutesRgb = new Rgb(
-                Application.Properties.getValue("RedMinutesColor"),
-                Application.Properties.getValue("GreenMinutesColor"),
-                Application.Properties.getValue("BlueMinutesColor") 
-            );
+            hourRgb = new Rgb(settings.get("RedHourColor"), settings.get("GreenHourColor"), settings.get("BlueHourColor"));
+            minutesRgb = new Rgb(settings.get("RedMinutesColor"), settings.get("GreenMinutesColor"), settings.get("BlueMinutesColor"));
         } else {
-            var presetColor = Application.Properties.getValue("PresetColor");
+            var presetColor = settings.get("PresetColor");
             switch (presetColor) {
                 default:
                 case Blue:
@@ -99,11 +113,59 @@ class ConfigurationProvider {
         minutesColor = minutesRgb.getHex();
     }
 
-    private const fonts = [
-        Rez.Fonts.Monofett,
-        Rez.Fonts.TiltNeon,
-        Rez.Fonts.Tourney
-    ];
+    private const fonts = {
+        CourierPrime => [
+            Rez.Fonts.CourierPrime1,
+            Rez.Fonts.CourierPrime2,
+            Rez.Fonts.CourierPrime3,
+            Rez.Fonts.CourierPrime4,
+            Rez.Fonts.CourierPrime5
+        ],
+        Inter => [
+            Rez.Fonts.Inter1,
+            Rez.Fonts.Inter2,
+            Rez.Fonts.Inter3,
+            Rez.Fonts.Inter4,
+            Rez.Fonts.Inter5
+        ],
+        Monofett => [
+            Rez.Fonts.Monofett1,
+            Rez.Fonts.Monofett2,
+            Rez.Fonts.Monofett3,
+            Rez.Fonts.Monofett4,
+            Rez.Fonts.Monofett5
+        ],
+        TiltNeon => [
+            Rez.Fonts.TiltNeon1,
+            Rez.Fonts.TiltNeon2,
+            Rez.Fonts.TiltNeon3,
+            Rez.Fonts.TiltNeon4,
+            Rez.Fonts.TiltNeon5
+        ],
+        Tourney => [
+            Rez.Fonts.Tourney1,
+            Rez.Fonts.Tourney2,
+            Rez.Fonts.Tourney3,
+            Rez.Fonts.Tourney4,
+            Rez.Fonts.Tourney5
+        ],
+    };
+
+    enum {
+        CourierPrime,
+        Inter,
+        Monofett,
+        TiltNeon,
+        Tourney,
+    }
+
+    enum {
+        SizeExtraSmall,
+        SizeSmall,
+        SizeMedium,
+        SizeLarge,
+        SizeExtraLarge,
+    }
 
     enum {
         Blue,
@@ -112,7 +174,7 @@ class ConfigurationProvider {
         Orange,
         Pink,
         Red,
-        Yellow
+        Yellow,
     }
 
     class Rgb {
@@ -127,7 +189,7 @@ class ConfigurationProvider {
         }
 
         function getHex() {
-            return r & 0x0000FF << 16 | g & 0x0000FF << 8 | b & 0x0000FF;
+            return ((r & 0x0000ff) << 16) | ((g & 0x0000ff) << 8) | (b & 0x0000ff);
         }
     }
 }

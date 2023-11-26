@@ -4,9 +4,8 @@
     <property id="UseVerticalLayout" type="boolean">false</property>
 
     <property id="PresetColor" type="number">3</property>
-
     <property id="UseCustomColors" type="boolean">false</property>
-   
+
     <property id="RedHourColor" type="number">255</property>
     <property id="GreenHourColor" type="number">153</property>
     <property id="BlueHourColor" type="number">0</property>
@@ -15,6 +14,10 @@
     <property id="GreenMinutesColor" type="number">245</property>
     <property id="BlueMinutesColor" type="number">230</property>
 
-    <property id="SelectedFont" type="number">1</property>
+    <property id="SelectedFont" type="number">3</property>
+    <property id="SelectedFontSize" type="number">4</property>
+    
+    <property id="IsFontSizeCalculatedForVerticalLayout" type="boolean">false</property>
+    <property id="IsFontSizeCalculatedForHorizontalLayout" type="boolean">false</property>
 
 </properties>

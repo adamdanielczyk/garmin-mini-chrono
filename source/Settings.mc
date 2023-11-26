@@ -5,6 +5,7 @@ class Settings {
 
     function initialize() {
         settings = {
+            "PropertiesVersion" => Properties.getValue("PropertiesVersion"),
             "UseCustomColors" => Properties.getValue("UseCustomColors"),
             "PresetColor" => Properties.getValue("PresetColor"),
             "RedHourColor" => Properties.getValue("RedHourColor"),
@@ -20,6 +21,22 @@ class Settings {
             "IsFontSizeCalculatedForVerticalLayout" => Properties.getValue("IsFontSizeCalculatedForVerticalLayout"),
             "IsFontSizeCalculatedForHorizontalLayout" => Properties.getValue("IsFontSizeCalculatedForHorizontalLayout"),
         };
+
+        resetPropertiesIfNeeded();
+    }
+
+    private function resetPropertiesIfNeeded() {
+        var currentVersion = 2;
+        var savedVersion = get("PropertiesVersion");
+
+        if (savedVersion < currentVersion) {
+            set("PropertiesVersion", currentVersion);
+
+            set("SelectedFont", 3);
+            set("SelectedFontSize", 4);
+            set("IsFontSizeCalculatedForVerticalLayout", false);
+            set("IsFontSizeCalculatedForHorizontalLayout", false);
+        }
     }
 
     function get(key) {

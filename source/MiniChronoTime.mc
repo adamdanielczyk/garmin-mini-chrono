@@ -103,8 +103,12 @@ class MiniChronoTime extends WatchUi.Drawable {
     }
 
     function drawHorizontalLayout(dc, hour, minutes, centerX, centerY, font, fontHeight, centerOffset) {
-        var hourX = centerX - centerOffset;
-        var minutesX = centerX + centerOffset;
+        var hourWidth = dc.getTextWidthInPixels(hour, font);
+        var minutesWidth = dc.getTextWidthInPixels(minutes, font);
+        var adjustedCenterX = centerX + (hourWidth - minutesWidth) / 2;
+
+        var hourX = adjustedCenterX - centerOffset;
+        var minutesX = adjustedCenterX + centerOffset;
         var y = centerY - fontHeight / 2;
 
         drawValue(dc, font, configurationProvider.hourColor, hourX, y, hour, Graphics.TEXT_JUSTIFY_RIGHT);
